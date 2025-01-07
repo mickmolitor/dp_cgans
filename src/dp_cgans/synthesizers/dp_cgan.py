@@ -546,9 +546,11 @@ class DPCGANSynthesizer(BaseSynthesizer):
 
                                 if sigma is not None:
                                     for parameter in self._discriminator.parameters():
+                                        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                                        # Register the hook with appropriate device
                                         parameter.register_hook(
-                                            lambda grad: grad.cuda() + (1 / self._batch_size) * sigma
-                                            * torch.randn(parameter.shape).cuda()
+                                            lambda grad: grad.to(device) + (1 / self._batch_size) * sigma
+                                            * torch.randn(parameter.shape).to(device)
                                         )
                             #### DP ####
 
