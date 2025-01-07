@@ -33,7 +33,7 @@ dependencies = [
     "pandas",
     "torch",
     "scipy",
-    "rdt==1.9.0",
+    "rdt==1.9.1",
     "scikit-learn",
     "graphviz",
     "pyreadstat",
